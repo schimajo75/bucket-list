@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ParkCard = props => {
-    let { name, city, state, team, img_url, notes} = props;
+    let { id, name, city, state, team, img_url, notes, visited} = props;
 
     return (
         <div className="park-card">
@@ -10,7 +10,7 @@ const ParkCard = props => {
             <h4>{team}</h4>
             <p>{city}, {state}</p>
             <p>{notes}</p>
-            <button>Been Here</button>
+            <button onClick={() => visited(id)}>Been Here</button>
         </div>
     )
 }
