@@ -6,7 +6,6 @@ const Navbar = props => {
     <div className="navbar">
       <Link to="/">Home</Link>
       <Link to="/login">Login/Sign Up</Link>
-      <Link to="/about">About</Link>
     </div>
   )
 }

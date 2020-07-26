@@ -27,7 +27,7 @@ handleClick = () => {
   )
   }
 }
-
+// **THIS CREATES NEW LIST
 // {this.props.parks.map(park => park
 //   <ParkCard 
 //   key={park.id}

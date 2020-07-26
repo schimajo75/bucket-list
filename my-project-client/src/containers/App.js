@@ -2,7 +2,6 @@ import React from 'react';
 import '../App.css';
 import { Route, Switch} from 'react-router-dom';
 import Home from '../components/Home';
-import About from '../components/About';
 import Auth from '../components/Auth';
 import Users from '../components/Users';
 import UserPage from '../components/UserPage';
@@ -70,16 +69,20 @@ class App extends React.Component {
   
 
   render(){
-    // console.log(this.state.listFilter)
+    // console.log(this.state.lists)
     return (
       <div className="App">
         <Navbar />
         <Switch>
-          <Route path="/users/:id" render={() => <UserPage /> } />
+
+          <Route path="/users/:id" render={(routerProps) => <UserPage {...routerProps} lists={this.state.lists} parks={this.state.parks} /> } />
+
           <Route path="/users" render={(routerProps) => <Users {...routerProps} lists={this.state.lists} parks={this.state.parks} filter={this.state.filter} createList={this.createList} /> } />
-          <Route path="/about" render={() => <About /> } />
+
           <Route path="/login" render={(routerProps) => <Auth {...routerProps} createUser={this.createUser} createList={this.createList} users={this.state.users} /> } />
+
           <Route exact path="/" render={() => <Home />} />
+
         </Switch>
       </div>
     );

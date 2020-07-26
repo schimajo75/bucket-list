@@ -17,7 +17,7 @@ class Auth extends React.Component {
         const { isNewUser, password, confirmation, username } = this.state;
         if (isNewUser && password === confirmation) {
           this.props.createUser(username, password)
-          this.props.history.push('/lists')
+          this.props.history.push('/users')
         } else {
           alert('try again!')
         }
@@ -27,7 +27,7 @@ class Auth extends React.Component {
       const { password, username } = this.state;
       this.props.users.map(user => {
         if (username === user.username && password === user.password) {
-          this.props.history.push('/lists')
+          this.props.history.push(`/users/${user.id}`)
         }})
       }
         
