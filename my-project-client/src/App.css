@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+
+.navbar {
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.lists {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+img {
+  max-height: 150px;
+}
+
+.park-card {
+  flex-basis: 20%;
+  margin: 10px;
+  border: 2px dotted;
+  padding: 3px;
+  border-radius: 5px;
+}
