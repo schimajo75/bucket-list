@@ -3,6 +3,8 @@ import ParkCard from '../components/ParkCard'
 import ParkCardBack from '../components/ParkCardBack'
 
 const listAPI = 'http://localhost:3000/api/v1/lists'
+const userAPI = 'http://localhost:3000/api/v1/users'
+
 
 class UserPage extends React.Component {
 
@@ -91,9 +93,17 @@ class UserPage extends React.Component {
   setCreate = () => {
     return (
     <>
-    <h1>Hello and Welcome</h1>
+    <h1 className="username">Batter Up!</h1>
     <button onClick={this.createList}>Create List</button>
+    <div className="space"></div>
     </>)
+  }
+
+  delete = () => {
+    fetch(`${userAPI}/${this.props.match.params.id}`, {
+      method: 'DELETE'
+    })
+    .then(this.props.history.push(`/`))
   }
    
     
@@ -102,7 +112,8 @@ render() {
   return (
         <div className="user-page">
           {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) ?
-          <h1>{user.username}</h1> : null)}
+          <> <button onClick={this.delete}>Delete Account</button> <h1 className="username">{user.username}</h1></>
+          : null)}
           { this.state.lists.length ? (this.state.lists.map(list => 
             this.props.parks.map(park => 
              { if (park.id === list.park_id && !list.visited) {

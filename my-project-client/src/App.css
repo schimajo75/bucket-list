@@ -2,6 +2,45 @@
   text-align: center;
 }
 
+.home {
+  background-image: url("https://laistassets.scprdev.org/i/4391c59d27b84c8b1baf58b6377dfd35/5b2c60914488b30009282e3e-original.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: 75%;
+  margin-top: 50px;
+  padding-left: 10rem;
+  margin-left: 10rem;
+}
+
+.header {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+  margin-right: 20rem;
+  
+}
+
+.park-map {
+  background: transparent;
+  max-block-size: fit-content;
+}
+
+
+/* .auth {
+  background-color: aqua;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: 50%;
+  margin-left: 20rem;
+  margin-top: 100px;
+} */
+
+.signin {
+  justify-self: auto;
+}
+
+.yogi {
+  max-block-size: fit-content;
+}
+
 .navbar {
   background-color: aquamarine;
   display: flex;
@@ -37,4 +76,9 @@ img {
 .user-page {
   background-image: url("https://baseballhall.org/sites/default/files/styles/fullscreen_image_popup/public/islandora_images/Ruth%20Babe%201386.86_Bat_%20NBL.jpg?itok=S1-NLMgw");
   background-size: cover;
+  height: 100vh;
+}
+
+.username {
+  color: aliceblue;
 }

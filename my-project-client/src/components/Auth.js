@@ -16,8 +16,8 @@ class Auth extends React.Component {
     handleSignUp = e => {
         const { isNewUser, password, confirmation, username } = this.state;
         if (isNewUser && password === confirmation) {
-          this.props.createUser(username, password)
-          this.props.filter ? this.props.history.push(`/users/${this.props.filter}`) : alert("loading")
+          this.props.createUser(username, password, this.props.history)
+          // this.props.filter ? this.props.history.push(`/users/${this.props.filter}`) : console.log(this.props.filter)
         } else {
           alert('try again!')
         }
@@ -60,10 +60,12 @@ class Auth extends React.Component {
     render(){
         let { isNewUser } = this.state;
         return (
-            <div className="simple-flex-col">
-                <h3>{isNewUser ? 'Sign Up' : 'Login'}</h3>
+            <div className="auth">
+                <h3 className="signin">{isNewUser ? 'Sign Up' : 'Login'}</h3>
                 { isNewUser ? this.renderSignup() : this.renderLogin() }
-                <div onClick={this.toggleNewUser}>{isNewUser ? <button>Login Instead</button> : <> <p>first time? ↓</p> <button>Sign Up Here</button> </>}</div>
+                <div className="signin" onClick={this.toggleNewUser}>{isNewUser ? <> <p className="signin" >got an account? ↓</p> <button className="signin">Login Instead</button> </> : <> <p className="signin" >first time? ↓</p> <button className="signin" >Sign Up Here</button> </>}</div>
+                <img className="yogi" src="https://cdn.cnn.com/cnnnext/dam/assets/150923083214-restricted-01-berra-quote-super-169.jpg" alt="yogi">
+                </img>
             </div>
         )
     }

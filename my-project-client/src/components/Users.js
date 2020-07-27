@@ -8,7 +8,7 @@ handleClick = () => {
 }
 
   render() {
-    
+    console.log(this.props.filter)
     return(
     <div className="new_user">
       <h1>Welcome new user!</h1>
