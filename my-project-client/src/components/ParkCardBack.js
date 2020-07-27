@@ -1,11 +1,11 @@
 import React from 'react';
 
 const ParkCardBack = props => {
-    let { id, name, notes } = props;
+    let { id, name, notes, img_url } = props;
 
     return (
         <div className="park-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/3077_take_me_out_to_the_ball_game_LOC.jpg" alt="Baseball Song" />
+            <img src={img_url} alt={name} />
             <h3>{name}</h3>
             {/* <h4>{team}</h4>
             <p>{city}, {state}</p> */}

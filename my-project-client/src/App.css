@@ -19,12 +19,22 @@
 
 img {
   max-height: 150px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
 }
 
 .park-card {
-  flex-basis: 20%;
+  flex-basis: 40%;
   margin: 10px;
-  border: 2px dotted;
+  border: solid;
   padding: 3px;
   border-radius: 5px;
+  display: inline-grid;
+  background: rgba(255, 228, 196, 0.358);
+}
+
+.user-page {
+  background-image: url("https://baseballhall.org/sites/default/files/styles/fullscreen_image_popup/public/islandora_images/Ruth%20Babe%201386.86_Bat_%20NBL.jpg?itok=S1-NLMgw");
+  background-size: cover;
 }

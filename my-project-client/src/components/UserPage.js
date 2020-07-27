@@ -98,10 +98,11 @@ class UserPage extends React.Component {
    
     
 render() {
+  console.log(this.state.lists)
   return (
         <div className="user-page">
           {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) ?
-          <h1>{user.username}</h1> : null)}       
+          <h1>{user.username}</h1> : null)}
           { this.state.lists.length ? (this.state.lists.map(list => 
             this.props.parks.map(park => 
              { if (park.id === list.park_id && !list.visited) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Route, Switch} from 'react-router-dom';
-import Home from '../components/Home';
+// import Home from '../components/Home';
 import Auth from '../components/Auth';
 import Users from '../components/Users';
 import UserPage from '../components/UserPage';
@@ -41,7 +41,6 @@ class App extends React.Component {
     .then(r => r.json())
     .then(user => {
       this.setState({users: [...this.state.users, user], filter: user.id})
-      this.history.push(`/users/${user.id}`)
     })
   };
 
@@ -59,7 +58,7 @@ class App extends React.Component {
 
           <Route path="/login" render={(routerProps) => <Auth {...routerProps} createUser={this.createUser} createList={this.createList} users={this.state.users} filter={this.state.filter}/> } />
 
-          <Route exact path="/" render={() => <Home />} />
+          {/* <Route exact path="/" render={() => <Home parks={this.state.parks}/>} /> */}
 
         </Switch>
       </div>

@@ -17,12 +17,12 @@ class Auth extends React.Component {
         const { isNewUser, password, confirmation, username } = this.state;
         if (isNewUser && password === confirmation) {
           this.props.createUser(username, password)
-          this.props.history.push(`/users`)
+          this.props.filter ? this.props.history.push(`/users/${this.props.filter}`) : alert("loading")
         } else {
           alert('try again!')
         }
     }
-
+    
 
     handleLogin = e => {
       const { password, username } = this.state;
@@ -63,7 +63,7 @@ class Auth extends React.Component {
             <div className="simple-flex-col">
                 <h3>{isNewUser ? 'Sign Up' : 'Login'}</h3>
                 { isNewUser ? this.renderSignup() : this.renderLogin() }
-                <div onClick={this.toggleNewUser}>{isNewUser ? "Login Instead" : "Sign Up Instead"}</div>
+                <div onClick={this.toggleNewUser}>{isNewUser ? <button>Login Instead</button> : <> <p>first time? ↓</p> <button>Sign Up Here</button> </>}</div>
             </div>
         )
     }
