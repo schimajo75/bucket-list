@@ -4,25 +4,16 @@ import UserPage from '../components/UserPage';
 class Users extends React.Component {
 
 handleClick = () => {
-  this.props.createList(this.props.filter)
+  this.props.filter ? this.props.history.push(`/users/${this.props.filter}`) : alert("The username or password you chose is already taken. Please return to the login page")
 }
 
   render() {
     
     return(
-    <div className="lists">
-      {/* <form onSubmit={this.handleClick}>
-      <button>Play Ball!</button>
-      </form>
-      
-      <h1>{this.props.newUserId}</h1>
-      {this.props.lists.map(list => 
-        if (list.user_id === this.props.filter && list.visited) {
-          this.props.parks.map(park => 
-            )
-        }
-        )}
-       */}
+    <div className="new_user">
+      <h1>Welcome new user!</h1>
+      <h4>Click below to get started</h4>
+      <button onClick={this.handleClick}>Play Ball</button>
     </div>
   )
   }

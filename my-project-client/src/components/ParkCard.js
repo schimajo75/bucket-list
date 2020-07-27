@@ -10,7 +10,7 @@ const ParkCard = props => {
             <h4>{team}</h4>
             <p>{city}, {state}</p>
             <p>{notes}</p>
-            <button onClick={() => visited(id)}>Been Here</button>
+            <button onClick={() => props.visited(id, props.userId)}>Been Here</button>
         </div>
     )
 }

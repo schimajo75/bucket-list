@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ParkCardBack = props => {
-    let { name, notes } = props;
+    let { id, name, notes } = props;
 
     return (
         <div className="park-card">
@@ -10,7 +10,7 @@ const ParkCardBack = props => {
             {/* <h4>{team}</h4>
             <p>{city}, {state}</p> */}
             <p>{notes}</p>
-            <button>Edit</button>
+            <button onClick={() => props.unVisited(id, props.userId)}>Edit</button>
         </div>
     )
 }

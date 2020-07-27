@@ -41,30 +41,10 @@ class App extends React.Component {
     .then(r => r.json())
     .then(user => {
       this.setState({users: [...this.state.users, user], filter: user.id})
+      this.history.push(`/users/${user.id}`)
     })
   };
 
-  // createList = (user) => {
-    // this.state.parks.forEach(park => {
-    //     fetch(listAPI, {
-    //       method: 'POST',
-    //       body: JSON.stringify({
-    //         user_id: user,
-    //         park_id: park.id,
-    //         visited: false
-    //       }),
-    //       headers: {
-    //         "Content-type": "application/json",
-    //         Accept: "application/json"
-    //       }
-    //     })
-    //     .then(r => r.json())
-    //     .then(list => console.log(list))
-    //   })
-    // }
-  
- 
-  
 
   render(){
     // console.log(this.state.lists)
@@ -73,7 +53,7 @@ class App extends React.Component {
         <Navbar />
         <Switch>
 
-          <Route path="/users/:id" render={(routerProps) => <UserPage {...routerProps} parks={this.state.parks} /> } />
+          <Route path="/users/:id" render={(routerProps) => <UserPage {...routerProps} parks={this.state.parks} users={this.state.users} /> } />
 
           <Route path="/users" render={(routerProps) => <Users {...routerProps} lists={this.state.lists} parks={this.state.parks} filter={this.state.filter} createList={this.createList} /> } />
 

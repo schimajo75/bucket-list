@@ -17,10 +17,10 @@ class Auth extends React.Component {
         const { isNewUser, password, confirmation, username } = this.state;
         if (isNewUser && password === confirmation) {
           this.props.createUser(username, password)
+          this.props.history.push(`/users`)
         } else {
           alert('try again!')
         }
-        this.props.history.push(`/users/${this.props.filter}`)
     }
 
 
