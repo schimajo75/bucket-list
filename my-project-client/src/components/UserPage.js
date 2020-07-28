@@ -46,7 +46,7 @@ class UserPage extends React.Component {
     }
   
 
-  visited = (id) => {
+  visit = (id) => {
     let targetList = this.state.lists.find(list => list.park_id === id)
     let index = this.state.lists.findIndex(list => list.park_id === id)
     let listId = targetList.id
@@ -68,7 +68,7 @@ class UserPage extends React.Component {
     })
   }
 
-  unVisited = (id) => {
+  unVisit = (id) => {
     let targetList = this.state.lists.find(list => list.park_id === id)
     let index = this.state.lists.findIndex(list => list.park_id === id)
     let listId = targetList.id
@@ -112,14 +112,15 @@ render() {
   return (
         <div className="user-page">
           {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) ?
-          <> <button onClick={this.delete}>Delete Account</button> <h1 className="username">{user.username}</h1></>
+          <> <button onClick={this.delete}>Delete Account</button> 
+          <h1 className="username">{user.username}</h1></>
           : null)}
           { this.state.lists.length ? (this.state.lists.map(list => 
             this.props.parks.map(park => 
              { if (park.id === list.park_id && !list.visited) {
-             return (<ParkCard key={park.id} {...park} visited={this.visited} />)}
+             return (<ParkCard key={park.id} {...park} visited={this.visit} />)}
              else if (park.id === list.park_id && list.visited) {
-             return <ParkCardBack key={park.id} {...park} unVisited={this.unVisited} />
+             return <ParkCardBack key={park.id} {...park} unVisited={this.unVisit} />
              } 
               })
             )) 
