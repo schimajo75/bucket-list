@@ -44,13 +44,12 @@ class UserPage extends React.Component {
   
 
   visit = (id) => {
-    let targetList = this.state.lists.find(list => list.park_id === id)
+    let listId = this.state.lists.find(list => list.park_id === id).id
     let index = this.state.lists.findIndex(list => list.park_id === id)
-    let listId = targetList.id
     fetch(`${listAPI}/${listId}`, {
       method: 'PATCH',
       body: JSON.stringify({
-        visited: !this.state.visited
+        visited: true
       }),
       headers: {
         "Content-type": "application/json",
@@ -66,9 +65,8 @@ class UserPage extends React.Component {
   }
 
   unVisit = (id) => {
-    let targetList = this.state.lists.find(list => list.park_id === id)
+    let listId = this.state.lists.find(list => list.park_id === id).id
     let index = this.state.lists.findIndex(list => list.park_id === id)
-    let listId = targetList.id
     fetch(`${listAPI}/${listId}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -110,7 +108,7 @@ class UserPage extends React.Component {
   )
 }
 
-handleChange = e => this.setState({ [e.target.name]: e.target.value })
+handleSearch = e => this.setState({ [e.target.name]: e.target.value })
 
 clearFilter = e => {
   e.preventDefault()
@@ -123,16 +121,19 @@ render() {
           {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) && !this.state.lists.length?
           <h1 className="username">{user.username}</h1>
           : null)}
+
           {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) && this.state.lists.length ?
           <> <button className="delete" onClick={() => { if (window.confirm('Are you sure you wish to delete this list?')) this.deleteUserLists() } }>Delete My Park List</button> 
           <h1 className="username">{user.username}'s list:</h1>
           <form onSubmit={this.clearFilter}>
-            <input name="team" placeholder="filter by team name" value={this.state.team} onChange={this.handleChange}></input>
+            <input name="team" placeholder="filter by team name" value={this.state.team} onChange={this.handleSearch}></input>
             <button>clear form</button>
           </form>
           </>
           : null)}
-          { this.state.lists.length ? 
+
+          { this.state.lists.length 
+          ? 
           (this.props.parks.map(park => 
             this.state.lists.map(list => 
              { if (park.id === list.park_id && !list.visited && park.team.toLowerCase().includes(this.state.team.toLowerCase())) {

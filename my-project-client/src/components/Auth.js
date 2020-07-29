@@ -17,7 +17,6 @@ class Auth extends React.Component {
         const { isNewUser, password, confirmation, username } = this.state;
         if (isNewUser && password === confirmation) {
           this.props.createUser(username, password, this.props.history)
-
         } else {
           alert('try again!')
         }
