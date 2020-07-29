@@ -17,13 +17,14 @@ class Auth extends React.Component {
         const { isNewUser, password, confirmation, username } = this.state;
         if (isNewUser && password === confirmation) {
           this.props.createUser(username, password, this.props.history)
+
         } else {
           alert('try again!')
         }
     }
     
 
-    handleLogin = e => {
+    handleLogin = () => {
       const { password, username } = this.state;
       let login = this.props.users.find(user => 
         username === user.username && password === user.password 
@@ -60,9 +61,9 @@ class Auth extends React.Component {
         let { isNewUser } = this.state;
         return (
             <div className="auth">
-                <h3 className="signin">{isNewUser ? 'Sign Up' : 'Login'}</h3>
+                <h3 >{isNewUser ? 'Sign Up' : 'Login'}</h3>
                 { isNewUser ? this.renderSignup() : this.renderLogin() }
-                <div className="signin" onClick={this.toggleNewUser}>{isNewUser ? <> <p className="signin" >got an account? ↓</p> <button className="signin">Login Instead</button> </> : <> <p className="signin" >first time? ↓</p> <button className="signin" >Sign Up Here</button> </>}</div>
+                <div  onClick={this.toggleNewUser}>{isNewUser ? <> <p>got an account? ↓</p> <button >Login Instead</button> </> : <> <p>first time? ↓</p> <button  >Sign Up Here</button> </>}</div>
                 <img className="yogi" src="https://cdn.cnn.com/cnnnext/dam/assets/150923083214-restricted-01-berra-quote-super-169.jpg" alt="yogi">
                 </img>
             </div>

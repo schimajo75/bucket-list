@@ -3,14 +3,13 @@ import ParkCard from '../components/ParkCard'
 import ParkCardBack from '../components/ParkCardBack'
 
 const listAPI = 'http://localhost:3000/api/v1/lists'
-const userAPI = 'http://localhost:3000/api/v1/users'
 
 
 class UserPage extends React.Component {
 
   state = {
     lists: [],
-    newUser: false
+    team: ""
   }
 
   componentDidMount() {
@@ -19,9 +18,7 @@ class UserPage extends React.Component {
     .then(r => r.json())
     .then(list => {
       let filtered = list.filter(list => list.user_id === id)
-      filtered.length > 0 ? 
-      this.setState({lists: filtered}) : 
-      this.setState({newUser: true}) 
+      this.setState({lists: filtered})
     })  
     }
 
@@ -93,37 +90,58 @@ class UserPage extends React.Component {
   setCreate = () => {
     return (
     <>
-    <h1 className="username">Batter Up!</h1>
+    <h1 className="create">Batter Up!</h1>
     <button onClick={this.createList}>Create List</button>
-    <div className="space"></div>
-    </>)
+    </>
+    )
   }
 
-  delete = () => {
-    fetch(`${userAPI}/${this.props.match.params.id}`, {
-      method: 'DELETE'
-    })
-    .then(this.props.history.push(`/`))
-  }
-   
+  deleteUserLists = () => {
+    let userId = this.props.match.params.id
+    this.state.lists.forEach(list => {
+      if (list.user_id === parseInt(userId)) {
+        fetch(`${listAPI}/${list.id}`, {
+        method: 'DELETE'
+      })
+      .then(this.setState({lists: []}))
+      .then(this.props.history.push(`/`))
+      }
+    }
+  )
+}
+
+handleChange = e => this.setState({ [e.target.name]: e.target.value })
+
+clearFilter = e => {
+  e.preventDefault()
+  this.setState({team: ""})
+} 
     
 render() {
-  console.log(this.state.lists)
   return (
         <div className="user-page">
-          {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) ?
-          <> <button onClick={this.delete}>Delete Account</button> 
-          <h1 className="username">{user.username}</h1></>
+          {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) && !this.state.lists.length?
+          <h1 className="username">{user.username}</h1>
           : null)}
-          { this.state.lists.length ? (this.state.lists.map(list => 
-            this.props.parks.map(park => 
-             { if (park.id === list.park_id && !list.visited) {
-             return (<ParkCard key={park.id} {...park} visited={this.visit} />)}
-             else if (park.id === list.park_id && list.visited) {
-             return <ParkCardBack key={park.id} {...park} unVisited={this.unVisit} />
+          {this.props.users.map(user => user.id === parseInt(this.props.match.params.id) && this.state.lists.length ?
+          <> <button className="delete" onClick={() => { if (window.confirm('Are you sure you wish to delete this list?')) this.deleteUserLists() } }>Delete My Park List</button> 
+          <h1 className="username">{user.username}'s list:</h1>
+          <form onSubmit={this.clearFilter}>
+            <input name="team" placeholder="filter by team name" value={this.state.team} onChange={this.handleChange}></input>
+            <button>clear form</button>
+          </form>
+          </>
+          : null)}
+          { this.state.lists.length ? 
+          (this.props.parks.map(park => 
+            this.state.lists.map(list => 
+             { if (park.id === list.park_id && !list.visited && park.team.toLowerCase().includes(this.state.team.toLowerCase())) {
+             return <ParkCard key={park.id} {...park} visited={() => this.visit(park.id)} />}
+             else if (park.id === list.park_id && list.visited && park.team.toLowerCase().includes(this.state.team.toLowerCase())) {
+             return <ParkCardBack key={park.id} {...park} unVisited={() => this.unVisit(park.id)} />
              } 
               })
-            )) 
+            )).reverse()
             :
             this.setCreate() }
         </div>
@@ -132,3 +150,5 @@ render() {
 }
 
 export default UserPage;
+
+
