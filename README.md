@@ -2,7 +2,7 @@
 
 StadiumTracker is a web app that enables a user to plan and keep a record of visits to stadiums across the country
 
-Drumblr was made with React and JavaScript (frontend) and Ruby on Rails (backend).
+StadiumTracker was made with React and JavaScript (frontend) and Ruby on Rails (backend).
 
 Check out the backend code here: https://github.com/schimajo75/BucketListApi
 
